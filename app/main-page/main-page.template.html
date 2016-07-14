@@ -1,0 +1,11 @@
+<h1>ToDo List</h1>
+
+
+
+<form>
+	<div ng-repeat="item in $ctrl.lists">
+		<input type="checkbox"> <em>{{item}}</em>
+	</div>
+
+	<input type="text" ng-model="$ctrl.newListText"> <button ng-click="$ctrl.addItem()">Click me</button>
+</form>
