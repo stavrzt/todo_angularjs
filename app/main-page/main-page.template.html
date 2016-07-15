@@ -1,11 +1,15 @@
-<h1>ToDo List</h1>
+<div class="wrapper " ng-class="red">
+	<h1>ToDo List</h1>
 
+	<form>
+		<div ng-repeat="item in $ctrl.lists">
+			<input type="checkbox"> 
+			<p>{{item.todoText}}</p>
+			<button data-ng-click="$ctrl.editItem()">E</button>
+			<button data-ng-click="$ctrl.removeItem($index)">X</button>
+		</div>
 
-
-<form>
-	<div ng-repeat="item in $ctrl.lists">
-		<input type="checkbox"> <em>{{item}}</em>
-	</div>
-
-	<input type="text" ng-model="$ctrl.newListText"> <button ng-click="$ctrl.addItem()">Click me</button>
-</form>
+		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}">
+		<button ng-click="$ctrl.addItem()">Click me</button>
+	</form>
+</div>
