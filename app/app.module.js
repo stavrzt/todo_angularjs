@@ -1,4 +1,4 @@
 'use strict';
 
 // Define the `phonecatApp` module
-angular.module('todoApp', ['ngRoute', 'mainPage']);
+angular.module('todoApp', ['ngRoute', 'mainPage', 'editPage']);

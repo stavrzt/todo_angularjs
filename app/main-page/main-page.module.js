@@ -1,4 +1,4 @@
 'use strict';
 
 // Define the `phoneDetail` module
-angular.module('mainPage', []);
+angular.module('mainPage', ['ngRoute','editPage']);

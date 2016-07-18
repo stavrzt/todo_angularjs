@@ -2,14 +2,14 @@
 	<h1>ToDo List</h1>
 
 	<form>
-		<div ng-repeat="item in $ctrl.lists">
-			<input type="checkbox"> 
+		<div ng-repeat="item in $ctrl.lists track by $index">
+			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags($index, ToDoCheck)"> 
 			<p>{{item.todoText}}</p>
-			<button data-ng-click="$ctrl.editItem()">E</button>
+			<a href="#!/todolist/edit/{{$index}}"><button>E</button></a>
 			<button data-ng-click="$ctrl.removeItem($index)">X</button>
 		</div>
 
-		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}">
+		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
 		<button ng-click="$ctrl.addItem()">Click me</button>
 	</form>
 </div>
