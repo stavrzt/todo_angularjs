@@ -8,7 +8,9 @@ angular.
     controller: ['$http', '$routeParams',
       function mainPageController() {
 
-	  	this.lists = JSON.parse(localStorage["lists"]);
+	  	try{this.lists = JSON.parse(localStorage["lists"]);}
+        catch(err){this.lists = [];}
+
       	this.placeholder = "Add new ToDo...";
 
       	this.addItem = function() {

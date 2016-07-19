@@ -32,3 +32,11 @@ form>div>input{
 	width:20px;
 	float:left;
 }
+
+.profitToDo{
+background-color:#99ff99;
+}
+
+.profitText{
+	text-decoration:line-through;
+}

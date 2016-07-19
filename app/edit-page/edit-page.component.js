@@ -9,5 +9,11 @@ angular.
       function editPageController($http, $routeParams) {
           this.lists = JSON.parse(localStorage["lists"]);
           this.value = this.lists[$routeParams["todoid"]].todoText;
+
+
+          this.save = function(newText){
+          	this.lists[$routeParams["todoid"]].todoText = newText;
+          	localStorage.setItem("lists", JSON.stringify(this.lists));
+          }
       }]
   });
