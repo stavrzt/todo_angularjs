@@ -15,7 +15,7 @@ angular.
 
       	this.addItem = function() {
       		if(this.newListText=="" || this.newListText==undefined){this.flag = true;this.placeholder = "Hey, fill me!";}
-      		else{this.lists.push({todoText:this.newListText, flag:false}); localStorage.setItem("lists", JSON.stringify(this.lists)); this.newListText=""; this.flag = false; this.placeholder = "Add new ToDo..."; }	
+      		else{this.lists.push({todoText:this.newListText, flag:false, dates:this.date}); localStorage.setItem("lists", JSON.stringify(this.lists)); this.newListText=""; this.flag = false; this.placeholder = "Add new ToDo..."; }	
       	}
 
       	this.removeItem = function(index) {

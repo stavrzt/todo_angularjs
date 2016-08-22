@@ -2,11 +2,20 @@
 	<h1>ToDo List</h1>
 
 	<form> 
-		<div ng-repeat="item in $ctrl.lists track by $index" ng-class="{'profitToDo': ToDoCheck}">
-			<input ng-model="ToDoCheck" ng-init="color" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags($index, ToDoCheck)"> 
-			<p ng-model="color" ng-class="{'profitText': ToDoCheck}">{{item.todoText}}</p>
+		<div ng-repeat="item in $ctrl.lists track by $index" ng-class="{'isReadyColor': item.flag}">
+			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags($index, ToDoCheck)">
+			<p ng-model="color" ng-class="{'isRedy': item.flag}">{{item.todoText}}<br><em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em></p>
 			<a href="#!/todolist/edit/{{$index}}"><button>E</button></a>
 			<button data-ng-click="$ctrl.removeItem($index)">X</button>
+
+			<div>
+				<input type="number" value=10 min="0" max="100" ng-model="progre" ng-class="{'isReadyColor':ready}">
+				<progress value={{progre}} max="100">
+					<em>1212</em>
+				</progress>
+				<div class="addcomment" ng-click="$ctrl.addComment()">Add comment</div>
+			</div>
+			
 		</div>
 
 		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
