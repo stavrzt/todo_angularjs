@@ -1,68 +1,17 @@
-*{
-	padding:0;
-	margin: 0;
-}
+*{padding:0;margin: 0;}
 
-.wrapper{
-	width: 300px;
-	margin: 0 auto;
-}
+.wrapper{width: 300px;margin: 0 auto;}
 
-.todo{
-	border: 1px solid grey;
-	margin: 10px 0;
-}
+.todo{border: 1px solid grey;margin: 10px 0;}
 
-p{
-	width: 220px;
-	float:left;
-	word-wrap:break-word;
-}
+p{width: 220px;float:left;word-wrap:break-word;}
 
-form>div>div{
-	overflow: hidden;
-}
+.todo input[type="checkbox"]{width:40px;float:left;}
 
-form>div>div>button{
-	width: 20px;
-	float:left;
-	margin: 0 5px;
-}
+.date{float:right;margin-top: 10px;margin-right: 10px;}
 
-form>input{
-	padding-left: 7px;
-}
+.isRedy{text-decoration: line-through;}
 
-form>div>div>input{
-	width:40px;
-	float:left;
-}
+.isReadyColor{background-color:#ffcccc;}
 
-.date{
-	float:right;
-	margin-top: 10px;
-	margin-right: 10px;
-}
-
-.progressBar{
-	width: 90%;
-	height:14px;
-	background-color:grey;
-	margin-bottom: 15px;
-}
-
-.indicator{
-	width:20%;
-	background-color:green;
-	height:100%;
-}
-
-.isRedy{
-	text-decoration: line-through;
-}
-
-.isReadyColor{
-	background-color:#ffcccc;
-}
-
-.addcomment{cursor: pointer};
+.addcomment, .todo .fa-times{cursor: pointer};

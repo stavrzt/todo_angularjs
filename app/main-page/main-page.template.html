@@ -2,18 +2,21 @@
 	<h1>ToDo List</h1>
 
 	<form> 
-		<div ng-repeat="item in $ctrl.lists track by $index" ng-class="{'isReadyColor': item.flag}">
+		<div ng-repeat="item in $ctrl.lists track by $index" ng-class="{'isReadyColor': item.flag}" class="todo">
 			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags($index, ToDoCheck)">
-			<p ng-model="color" ng-class="{'isRedy': item.flag}">{{item.todoText}}<br><em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em></p>
-			<a href="#!/todolist/edit/{{$index}}"><button>E</button></a>
-			<button data-ng-click="$ctrl.removeItem($index)">X</button>
+			
+			<p ng-model="color" ng-class="{'isRedy': item.flag}">{{item.todoText}}
+				<br>
+				<em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em>
+			</p>
+
+			<a href="#!/todolist/edit/{{$index}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+			<i class="fa fa-times" aria-hidden="true" data-ng-click="$ctrl.removeItem($index)"></i>
 
 			<div>
-				<input type="number" value=10 min="0" max="100" ng-model="progre" ng-class="{'isReadyColor':ready}">
-				<progress value={{progre}} max="100">
-					<em>1212</em>
+				<input ng-model="progress" ng-init="progress=item.progress"  class="save_progress" type="number" min="0" max="100" >
+				<progress value={{progress}} max="100">
 				</progress>
-				<div class="addcomment" ng-click="$ctrl.addComment()">Add comment</div>
 			</div>
 			
 		</div>
