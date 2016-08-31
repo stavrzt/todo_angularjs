@@ -1,27 +1,40 @@
 <div class="wrapper ">
 	<h1>ToDo List</h1>
 
+	<input type="text" name="" ng-model="filtering" placeholder="filtering">
+
+	<select ng-model="sorting">
+		<option value="todoText">todoText</option>
+		<option value="dates">date</option>
+		<option value="progress">progress</option>
+		<option value="id">initial</option>
+	</select>
+
+	<button ng-click="$ctrl.ready=undefined"> /  /  All   /  /</button>
+	<button ng-click="$ctrl.ready='false'">In progress</button>
+	<button ng-click="$ctrl.ready='true'">Complete</button>
+
 	<form> 
-		<div ng-repeat="item in $ctrl.lists track by $index" ng-class="{'isReadyColor': item.flag}" class="todo">
-			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags($index, ToDoCheck)">
+		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
+		<button ng-click="$ctrl.addItem()">Click me</button>
+
+		<div ng-repeat="item in $ctrl.lists | filter:filtering | filter:{flag:$ctrl.ready} | orderBy:sorting track by item.id" ng-class="{'isReadyColor': item.flag}" class="todo">
+			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags(item.id, ToDoCheck)">
 			
-			<p ng-model="color" ng-class="{'isRedy': item.flag}">{{item.todoText}}
+			<p ng-model="color" ng-class="{'isRedy': item.flag}" class="save_text">{{item.todoText}}
 				<br>
 				<em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em>
 			</p>
 
-			<a href="#!/todolist/edit/{{$index}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-			<i class="fa fa-times" aria-hidden="true" data-ng-click="$ctrl.removeItem($index)"></i>
+			<a href="#!/todolist/edit/{{item.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+			<i class="fa fa-times" aria-hidden="true" data-ng-click="$ctrl.removeItem($event, item.id)"></i>
 
 			<div>
-				<input ng-model="progress" ng-init="progress=item.progress"  class="save_progress" type="number" min="0" max="100" >
+				<input ng-model="progress" ng-init="progress=item.progress" ng-keyup="$ctrl.uptodo($event, item.id)" ng-mouseup="$ctrl.uptodo($event, item.id)" class="save_progress" type="number" min="0" max="100" >
 				<progress value={{progress}} max="100">
 				</progress>
 			</div>
 			
 		</div>
-
-		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
-		<button ng-click="$ctrl.addItem()">Click me</button>
 	</form>
 </div>
