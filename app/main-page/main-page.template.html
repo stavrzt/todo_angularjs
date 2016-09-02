@@ -1,40 +1,64 @@
-<div class="wrapper ">
-	<h1>ToDo List</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-offset-3 col-md-offset-2 col-sm-offset-1 col-lg-6 col-md-8 col-sm-10 col-xs-12 main_column"><h1>ToDo List</h1>
+	
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xs-offset-2 search">	
+			<div class="form-group has-feedback">
+				<h4>Search</h4>	
+			    <input ng-model="filtering" type="text" class="form-control">
+			    <i class="fa fa-search form-control-feedback"></i>
+			</div>
+		</div>
 
-	<input type="text" name="" ng-model="filtering" placeholder="filtering">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xs-offset-2 ">
+			<h4>Sort</h4>	
+			<select class="form-control" ng-model="sorting" ng-init="sorting='id'">
+					<option value="id">Initial</option>
+					<option value="todoText">Text</option>
+					<option value="dates">Date</option>
+					<option value="progress">Progress</option>
+			</select>
+		</div>
+	</div>
 
-	<select ng-model="sorting">
-		<option value="todoText">todoText</option>
-		<option value="dates">date</option>
-		<option value="progress">progress</option>
-		<option value="id">initial</option>
-	</select>
+	<div class="row button_row">
+		<div class="col-lg-offset-3 col-md-offset-2 col-sm-offset-1 col-lg-6 col-md-8 col-sm-10 col-xs-12">
+			<button class="btn btn-info" ng-click="$ctrl.ready=undefined">All</button>
+			<button class="btn btn-info" ng-click="$ctrl.ready='false'">In progress</button>
+			<button class="btn btn-info" ng-click="$ctrl.ready='true'">Complete</button>
+		</div>
+	</div>
+	 
+		<div ng-repeat="item in $ctrl.lists | filter:filtering | filter:{flag:$ctrl.ready} | orderBy:sorting track by item.id" ng-class="{'isReadyColor': item.flag}" class="row todo">
 
-	<button ng-click="$ctrl.ready=undefined"> /  /  All   /  /</button>
-	<button ng-click="$ctrl.ready='false'">In progress</button>
-	<button ng-click="$ctrl.ready='true'">Complete</button>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<input class="todo_check" ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags(item.id, ToDoCheck)">
+			</div>
 
-	<form> 
-		<input type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
-		<button ng-click="$ctrl.addItem()">Click me</button>
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-11">
+				<p ng-model="color" ng-class="{'isRedy': item.flag}" class="save_text">{{item.todoText}}
+					<br>
+					<em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em>
+				</p>
 
-		<div ng-repeat="item in $ctrl.lists | filter:filtering | filter:{flag:$ctrl.ready} | orderBy:sorting track by item.id" ng-class="{'isReadyColor': item.flag}" class="todo">
-			<input ng-model="ToDoCheck" ng-checked="item.flag" type="checkbox" ng-click="$ctrl.flags(item.id, ToDoCheck)">
-			
-			<p ng-model="color" ng-class="{'isRedy': item.flag}" class="save_text">{{item.todoText}}
-				<br>
-				<em class="date">{{item.dates | date:'dd-MM-yy HH:mm:ss'}}</em>
-			</p>
-
-			<a href="#!/todolist/edit/{{item.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-			<i class="fa fa-times" aria-hidden="true" data-ng-click="$ctrl.removeItem($event, item.id)"></i>
-
-			<div>
-				<input ng-model="progress" ng-init="progress=item.progress" ng-keyup="$ctrl.uptodo($event, item.id)" ng-mouseup="$ctrl.uptodo($event, item.id)" class="save_progress" type="number" min="0" max="100" >
-				<progress value={{progress}} max="100">
-				</progress>
+				<div>
+					<input ng-model="progress" ng-init="progress=item.progress" ng-keyup="$ctrl.uptodo($event, item.id)" ng-mouseup="$ctrl.uptodo($event, item.id)" class="save_progress" type="number" min="0" max="100" >
+					<progress value={{progress}} max="100"></progress>
+				</div>
 			</div>
 			
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 edit_remove">
+				<a href="#!/todolist/edit/{{item.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<i class="fa fa-trash" aria-hidden="true" data-ng-click="$ctrl.removeItem($event, item.id)"></i>
+			</div>
 		</div>
-	</form>
+
+		<div class="row add_input">
+			<input class="form-control inputTodoText" type="text" placeholder={{$ctrl.placeholder}} ng-model="$ctrl.newListText" ng-class="{'bg-danger':$ctrl.flag}" ng-focus="$ctrl.flag=false; $ctrl.placeholder = 'Add new ToDo...'">
+			<button class="btn btn-info buttonTodoText" ng-click="$ctrl.addItem()"><i class="fa fa-plus-square-o"></i> Add</button>
+		</div> 
+
+		</div>
+	</div>
 </div>

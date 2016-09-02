@@ -1,7 +1,3 @@
-
-
-/*ТУТ БУДУЩИЕ РОУТЫ*/
-
 'use strict';
 
 angular.
@@ -16,9 +12,6 @@ angular.
         }).
         when('/todolist/edit/:todoid', {
           template: '<edit-page></edit-page>'
-        }).
-        when('/todolist/comment/:todoid', {
-          template: '<h1>222</h1>'
         }).
         otherwise('/todolist');
     }

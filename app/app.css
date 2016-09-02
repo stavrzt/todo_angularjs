@@ -1,17 +1,44 @@
-*{padding:0;margin: 0;}
+*{padding:0;margin: 0; color:grey;}
+h1{text-align:center;border-bottom:2px solid #5bc0de;border-top:2px solid #5bc0de;color:grey;margin-bottom:5px;}
+h4{text-align:center;color:grey; padding: 0; margin:0;}
+p{width: 100%;float:left;word-wrap:break-word;}
+select:hover{cursor:pointer;}
+select{color:grey !important;}
+progress{width: 85%;}
+textarea{margin:30px 0;}
 
 .wrapper{width: 300px;margin: 0 auto;}
-
-.todo{border: 1px solid grey;margin: 10px 0;}
-
-p{width: 220px;float:left;word-wrap:break-word;}
-
-.todo input[type="checkbox"]{width:40px;float:left;}
-
+.todo{border: 1px solid #ccc;border-radius: 4px;margin-right:0;margin-left:0; margin-bottom:11px;padding: 11px 0;}
 .date{float:right;margin-top: 10px;margin-right: 10px;}
-
 .isRedy{text-decoration: line-through;}
-
 .isReadyColor{background-color:#ffcccc;}
+.fa{color:grey;}
+.fa:hover{cursor: pointer; color:#5bc0de;}
+button .fa{color:white;}
+.button_row{margin: 11px 0;}
+.button_row button{width: 30%; float:left; margin-right: 5%; text-align: center; padding: 0px;}
+.button_row button:last-child{margin-right: 0;}
+.button_row div{text-align:center;border-top:2px solid #5bc0de;padding-top:9px;}
+.inputTodoText{width: 80%; float:left;border-top-right-radius:0;border-bottom-right-radius:0;border-right:none !important;}
+.buttonTodoText{width: 20%;float: left;border-top-left-radius: 0;border-bottom-left-radius: 0;}
+.main_column{border-right: 2px solid #5bc0de; border-left: 2px solid #5bc0de;}
+.todo_check{width: 15px; height: 15px; float: left;}
+.todo_check:hover{cursor: pointer;}
+.add_input{margin-right:0;margin-left:0;border-bottom: 2px solid #5bc0de;padding-bottom: 17px;}
+.edit_remove{text-align: center; font-size: 18px;}
+.save_progress{width: 44px;}
+.form-control-feedback{top:26px !important; font-size: 18px;}
+.search i{font-size: 18px;}
+.edit_buttons{text-align: center;}
 
-.addcomment, .todo .fa-times{cursor: pointer};
+
+::selection {background: #5bc0de; color:white;}
+::-moz-selection {background: #5bc0de; color:white;}
+
+@media screen and (max-width:767px) {
+	.button_row button {width: 80%;margin-bottom: 2px; margin-left:10%;}
+	.col-xs-11{width: 89% !important;}
+	.search{margin-bottom: 6px;}
+}
+
+

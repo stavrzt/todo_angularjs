@@ -1,6 +1,13 @@
-<form>
-	<h1>Edit your text:</h1>
-	<textarea ng-model="newText" ng-init="newText=$ctrl.value"></textarea>
-	<button ng-click="$ctrl.save(newText)">Save</button>
-	<a href="#!/todolist"><button>Back</button></a>
-</form>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-offset-3 col-md-offset-2 col-sm-offset-1 col-lg-6 col-md-8 col-sm-10 col-xs-12 main_column">
+			<h1>Edit your text:</h1>
+			<textarea class="form-control" ng-model="newText" ng-init="newText=$ctrl.value"></textarea>
+				
+			<div class="row edit_buttons add_input">
+				<button class="btn btn-info" ng-click="$ctrl.save(newText)">Save</button>
+				<a href="#!/todolist"><button class="btn btn-info">Back</button></a>
+			</div>
+		</div>
+	</div>
+</div>

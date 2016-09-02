@@ -7,13 +7,13 @@ angular.
     controller: ['$http', '$routeParams',
       function mainPageController() {
 
-        if(localStorage["lists"]==undefined){this.lists = [];}
+        if(localStorage["lists"]==undefined){this.lists = [];} /*Загрузка данных из localStorage*/
         else{this.lists = JSON.parse(localStorage["lists"]);}
 
         this.placeholder = "Add new ToDo...";
-        this.ready = undefined;
+        this.ready = undefined; /*Отображение всех тасков после загрузки*/
 
-        /*Функция изменения готовности таска++*/
+        /*Функция изменения готовности таска*/
         this.uptodo = function(event, ids){
           var itemPosition = this.returnPosition(ids);
           if(event.target.valueAsNumber==100){this.flags(ids, true);}
@@ -54,6 +54,7 @@ angular.
           localStorage.setItem("lists", JSON.stringify(this.lists));
       	} 
 
+        /*Функция поиска элемента в массиве по id*/
         this.returnPosition = function (ids) {
           var position;
           this.lists.forEach(function(for_item, i, arr) {
